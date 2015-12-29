@@ -6,6 +6,7 @@ class Issues extends EndpointGroup {
 
     /**
      * @link https://developer.github.com/v3/issues/#list-issues-for-a-repository
+     * @link https://developer.github.com/v3/#pagination
      * @param $owner
      * @param $repo
      * @param string $state Indicates the state of the issues to return. Can be either open, closed, or all.

@@ -15,6 +15,7 @@ class Repositories extends EndpointGroup {
      * collaborator, and repositories that the authenticated user has access to through an organization membership.
      *
      * @link https://developer.github.com/v3/repos/#list-your-repositories
+     * @link https://developer.github.com/v3/#pagination
      * @param string visibility Can be one of all, public, or private.
      * @param string affiliation Comma-separated list of values. Can include: owner - Repositories that are owned by the
      *   authenticated user, collaborator - Repositories that the user has been added to as a collaborator,
@@ -40,6 +41,7 @@ class Repositories extends EndpointGroup {
      * List public repositories for the specified user.
      *
      * @link https://developer.github.com/v3/repos/#list-user-repositories
+     * @link https://developer.github.com/v3/#pagination
      * @param string $username
      * @param string $type Can be one of all, owner, member.
      * @param string $sort Can be one of created, updated, pushed, full_name.
@@ -61,6 +63,7 @@ class Repositories extends EndpointGroup {
      * List repositories for the specified org.
      *
      * @link https://developer.github.com/v3/repos/#list-organization-repositories
+     * @link https://developer.github.com/v3/#pagination
      * @param string $org
      * @param string $type Can be one of all, public, private, forks, sources, member.
      * @return \Garden\Http\HttpResponse
@@ -80,6 +83,7 @@ class Repositories extends EndpointGroup {
      * This provides a dump of every public repository, in the order that they were created.
      *
      * @link https://developer.github.com/v3/repos/#list-all-public-repositories
+     * @link https://developer.github.com/v3/#pagination
      * @param string $since The integer ID of the last Repository that you've seen.
      * @return \Garden\Http\HttpResponse
      */
@@ -114,6 +118,7 @@ class Repositories extends EndpointGroup {
      * order.
      *
      * @link https://developer.github.com/v3/repos/#list-contributors
+     * @link https://developer.github.com/v3/#pagination
      * @param $owner
      * @param $repo
      * @param string $anon Set to 1 or true to include anonymous contributors in results.
@@ -130,6 +135,7 @@ class Repositories extends EndpointGroup {
      * written in that language.
      *
      * @link https://developer.github.com/v3/repos/#list-languages
+     * @link https://developer.github.com/v3/#pagination
      * @param $owner
      * @param $repo
      * @return \Garden\Http\HttpResponse
@@ -142,6 +148,7 @@ class Repositories extends EndpointGroup {
 
     /**
      * @link https://developer.github.com/v3/repos/#list-teams
+     * @link https://developer.github.com/v3/#pagination
      * @param $owner
      * @param $repo
      * @return \Garden\Http\HttpResponse
@@ -154,6 +161,7 @@ class Repositories extends EndpointGroup {
 
     /**
      * @link https://developer.github.com/v3/repos/#list-tags
+     * @link https://developer.github.com/v3/#pagination
      * @param $owner
      * @param $repo
      * @return \Garden\Http\HttpResponse
@@ -166,6 +174,7 @@ class Repositories extends EndpointGroup {
 
     /**
      * @link https://developer.github.com/v3/repos/#list-branches
+     * @link https://developer.github.com/v3/#pagination
      * @param string $owner
      * @param string $repo
      * @param string $protected Set to 1 or true to only return protected branches.

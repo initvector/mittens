@@ -6,6 +6,7 @@ class PullRequests extends EndpointGroup {
 
     /**
      * @link https://developer.github.com/v3/pulls/#list-pull-requests
+     * @link https://developer.github.com/v3/#pagination
      * @param string $owner
      * @param string $repo
      * @param string $state Either open, closed, or all to filter by state.
@@ -50,7 +51,8 @@ class PullRequests extends EndpointGroup {
     }
 
     /**
-     * @link List commits on a pull request
+     * @link https://developer.github.com/v3/pulls/#list-commits-on-a-pull-request
+     * @link https://developer.github.com/v3/#pagination
      * @param string $owner
      * @param string $repo
      * @param string $number
@@ -65,6 +67,7 @@ class PullRequests extends EndpointGroup {
 
     /**
      * @link https://developer.github.com/v3/pulls/#list-pull-requests-files
+     * @link https://developer.github.com/v3/#pagination
      * @param string $owner
      * @param string $repo
      * @param string $number
