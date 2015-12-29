@@ -1,0 +1,17 @@
+{
+    "name": "initvector/mittens",
+    "description": "A read-only GitHub library driven by Garden HTTP",
+    "require": {
+        "vanilla/garden-http": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Initvector\\Mittens\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "initvector"
+        }
+    ]
+}
