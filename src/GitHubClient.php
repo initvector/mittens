@@ -28,7 +28,8 @@ class GitHubClient extends HttpClient {
         $uri = static::appendQuery(
             $uri,
             [
-                'page' => $page
+                'page' => $page,
+                'per_page' => $this->perPage()
             ]
         );
 
@@ -47,25 +48,5 @@ class GitHubClient extends HttpClient {
         }
 
         return $this->perPage;
-    }
-
-    /**
-     * @param string $method
-     * @param string $uri
-     * @param array|string $body
-     * @param array $headers
-     * @param array $options
-     * @return \Garden\Http\HttpResponse
-     */
-    public function request($method, $uri, $body, $headers = [], array $options = []) {
-        // Automatically insert per_page for all API requests
-        $uri = static::appendQuery(
-            $uri,
-            [
-                'per_page' => $this->perPage()
-            ]
-        );
-
-        return parent::request($method, $uri, $body, $headers, $options);
     }
 }
