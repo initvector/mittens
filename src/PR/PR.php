@@ -49,7 +49,6 @@ class PR extends EndpointGroup {
 
     /**
      * @link https://developer.github.com/v3/pulls/#list-commits-on-a-pull-request
-     * @link https://developer.github.com/v3/#pagination
      * @param string $owner
      * @param string $repo
      * @param string $number
@@ -66,7 +65,6 @@ class PR extends EndpointGroup {
 
     /**
      * @link https://developer.github.com/v3/pulls/#list-pull-requests-files
-     * @link https://developer.github.com/v3/#pagination
      * @param string $owner
      * @param string $repo
      * @param string $number
