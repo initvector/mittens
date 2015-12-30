@@ -15,16 +15,33 @@ class GitHubClient extends HttpClient {
     }
 
     /**
-     * Automatically append page number to the provided GET request
-     *
      * @param string $uri
      * @param array $query
      * @param array $headers
      * @param array $options
-     * @param int $page
      * @return \Garden\Http\HttpResponse
      */
-    public function getPage($uri, array $query, array $headers, array $options, $page = 1) {
+    public function get($uri, array $query = [], array $headers = [], $options = []) {
+        foreach ($query as $name => $value) {
+            if ($value === null) {
+                unset($query[$name]);
+            }
+        }
+
+        return parent::get($uri, $query, $headers, $options);
+    }
+
+    /**
+     * Automatically append page number to the provided GET request
+     *
+     * @param string $uri
+     * @param array $query
+     * @param int $page
+     * @param array $headers
+     * @param array $options
+     * @return \Garden\Http\HttpResponse
+     */
+    public function getPage($uri, array $query, $page = 1, array $headers = [], array $options = []) {
         $uri = static::appendQuery(
             $uri,
             [
@@ -33,7 +50,36 @@ class GitHubClient extends HttpClient {
             ]
         );
 
-        return parent::get($uri, $query, $headers, $options);
+        return $this->get($uri, $query, $headers, $options);
+    }
+
+    /**
+     * Extract GitHub's pagination information from the Link header of a Garden HTTP HttpResponse object
+     *
+     * @link https://developer.github.com/v3/#pagination
+     * @param \Garden\Http\HttpResponse $response
+     * @return array
+     */
+    public static function getPagination(\Garden\Http\HttpResponse $response) {
+        $pages = [
+            'first' => null,
+            'last'  => null,
+            'next'  => null,
+            'prev'  => null
+        ];
+
+        if ($response->isSuccessful()) {
+            if ($link = $response->getHeader('Link')) {
+                $pagePattern = '`<https?:\/\/[A-Z0-9\-\._~:\/?#\[\]@!$&\'()*+,;=]+[?&]page=(?P<page>\d+)[A-Z0-9\-\._~:\/?#\[\]@!$&\'()*+,;=]+>; rel="(?P<rel>first|prev|next|last)`i';
+                if (preg_match_all($pagePattern, $link, $pageMatches)) {
+                    foreach ($pageMatches['rel'] as $relIndex => $relVal) {
+                        $pages[$relVal] = $pageMatches['page'][$relIndex];
+                    }
+                }
+            }
+        }
+
+        return $pages;
     }
 
     /**

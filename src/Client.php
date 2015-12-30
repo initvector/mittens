@@ -5,32 +5,32 @@ class Client {
 
     private $gitHubClient;
 
-    private $issues;
+    private $issue;
 
-    private $pullRequests;
+    private $pr;
 
-    private $repositories;
+    private $repo;
 
     public function __construct($accessToken, $throwExceptions = true) {
         $gitHubClient = new GitHubClient($accessToken);
         $gitHubClient->setThrowExceptions($throwExceptions);
 
-        $this->issues = new Issues\Issues($gitHubClient);
-        $this->pullRequests = new PullRequests\PullRequests($gitHubClient);
-        $this->repositories = new Repositories\Repositories($gitHubClient);
+        $this->issue = new Issue\Issue($gitHubClient);
+        $this->pr = new PR\PR($gitHubClient);
+        $this->repo = new Repo\Repo($gitHubClient);
 
         $this->gitHubClient = $gitHubClient;
     }
 
-    public function issues() {
-        return $this->issues;
+    public function issue() {
+        return $this->issue;
     }
 
-    public function pullRequests() {
-        return $this->pullRequests;
+    public function pr() {
+        return $this->pr;
     }
 
-    public function repositories() {
-        return $this->repositories;
+    public function repo() {
+        return $this->repo;
     }
 }
