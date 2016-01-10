@@ -98,7 +98,6 @@ class PR extends EndpointGroup {
         );
         $this->gitHubClient->setThrowExceptions($throwExceptions);
 
-        // If the PR was merged, we should receive a status code of 204.  Otherwise, we assume it hasn't been merged.
-        return ($result->getStatusCode() == 204);
+        return $result;
     }
 }
