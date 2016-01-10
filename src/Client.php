@@ -11,6 +11,8 @@ class Client {
 
     private $repo;
 
+    const VERSION = '0.4.2';
+
     public function __construct($accessToken, $throwExceptions = true) {
         $gitHubClient = new GitHubClient($accessToken);
         $gitHubClient->setThrowExceptions($throwExceptions);
