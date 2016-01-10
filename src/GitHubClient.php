@@ -33,6 +33,24 @@ class GitHubClient extends HttpClient {
     }
 
     /**
+     * Fetch the Etag header value from a response.
+     * 
+     * @param \Garden\Http\HttpResponse $response
+     * @return null|string
+     */
+    public function getEtag(\Garden\Http\HttpResponse $response) {
+        $etagID = null;
+
+        if ($response->isSuccessful()) {
+            if ($etag = $response->getHeader('ETag')) {
+                $etagID = $etag;
+            }
+        }
+
+        return $etagID;
+    }
+
+    /**
      * Automatically append page number to the provided GET request
      *
      * @param string $uri
@@ -61,7 +79,7 @@ class GitHubClient extends HttpClient {
      * @param \Garden\Http\HttpResponse $response
      * @return array
      */
-    public static function getPagination(\Garden\Http\HttpResponse $response) {
+    public function getPagination(\Garden\Http\HttpResponse $response) {
         $pages = [
             'first' => null,
             'last'  => null,
@@ -82,6 +100,38 @@ class GitHubClient extends HttpClient {
 
         return $pages;
     }
+
+    /**
+     * Grab the rate limitation information from a response
+     *
+     * @param \Garden\Http\HttpResponse $response
+     * @return array
+     */
+     public function getRateLimit(\Garden\Http\HttpResponse $response) {
+         $rateLimit = [
+             'limit'     => null,
+             'remaining' => null,
+             'reset'     => null
+         ];
+
+         /**
+          * Only attempt to fetch headers on a successful request.  Only attempt to overwrite our defaults if the
+          * header is set.
+          */
+         if ($response->isSuccessful()) {
+             if ($limit = $response->getHeader('X-RateLimit-Limit')) {
+                 $rateLimit['limit'] = $limit;
+             }
+             if ($remaining = $response->getHeader('X-RateLimit-Remaining')) {
+                 $rateLimit['remaining'] = $remaining;
+             }
+             if ($reset = $response->getHeader('X-RateLimit-Reset')) {
+                 $rateLimit['reset'] = $reset;
+             }
+         }
+
+         return $rateLimit;
+     }
 
     /**
      * Set or get the current per_page value
