@@ -24,9 +24,21 @@ A read-only library for accessing [version 3 of GitHub's API](https://developer.
   * [Get branch](https://developer.github.com/v3/repos/#get-branch)
   * [List languages](https://developer.github.com/v3/repos/#list-languages)
 
+## Convenience Methods
+`Initvector\Mittens\GitHubData` contains a few functions to simplify the extraction of key data from GitHub API responses.  These functions are:
+
+* `getEtag` - Grabs the entity tag from a response and returns it, along with a strong/weak flag.
+* `getPagination` - Breaks the `Link` header returned by API requests to extract the following pagination data: first page, last page, next page and previous page.
+* `getRateLimit` - Will parse the `X-RateLimit-*` headers to determine the account limit, remaining requests until the limit is reached and a timestamp of when the limit will be reset.
+
 ## Example Usage
 ```php
 // Grab the first page of results of all repos the current API user is associated with
-$mittens = new Initvector\Mittens\Client('authentication-token-goes-here');
+use Initvector\Mittens\Client as mittens;
+
+$mittens = new mittens('authentication-token-goes-here');
 $result = $client->repo()->getOwn()->getBody();
 ```
+
+## Notes
+* API requests will return an `Garden\Http\HttpResponse` object representing the full state of the HTTP response.  This object can be used to pull raw header or body contents, if necessary.  In addition, methods like `getBody` can be used to retrieve the data and convert from JSON to an object, automatically, if possible.
