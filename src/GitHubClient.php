@@ -12,7 +12,7 @@ class GitHubClient extends HttpClient {
         $this->setDefaultHeader('Accept', 'application/vnd.github.v3+json');
         $this->setDefaultHeader('Authorization', "token {$accessToken}");
         $this->setDefaultHeader('Content-Type', 'application/json');
-        $this->setDefaultHeader('User-Agent', 'mittens/' . Client::VERSION) . ' (https://github.com/initvector/mittens)';
+        $this->setDefaultHeader('User-Agent', 'mittens/' . Client::VERSION . ' (https://github.com/initvector/mittens)');
     }
 
     /**
