@@ -1,4 +1,7 @@
 <?php
+/**
+ * @license http://opensource.org/licenses/MIT MIT License
+ */
 namespace Initvector\Mittens;
 
 class Client {

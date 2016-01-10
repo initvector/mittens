@@ -3,8 +3,9 @@ namespace Initvector\Mittens\Repo;
 use Initvector\Mittens\EndpointGroup;
 
 /**
- * @package Initvector\Mittens
+ * @license http://opensource.org/licenses/MIT MIT License
  * @link https://developer.github.com/v3/repos/
+ * @package Initvector\Mittens
  */
 class Repo extends EndpointGroup {
 

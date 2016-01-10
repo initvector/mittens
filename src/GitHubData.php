@@ -1,6 +1,9 @@
 <?php
 namespace Initvector\Mittens;
 
+/**
+ * @license http://opensource.org/licenses/MIT MIT License
+ */
 class GitHubData {
 
     /**

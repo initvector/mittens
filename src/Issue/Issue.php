@@ -3,8 +3,9 @@ namespace Initvector\Mittens\Issue;
 use Initvector\Mittens\EndpointGroup;
 
 /**
- * @package Initvector\Mittens
+ * @license http://opensource.org/licenses/MIT MIT License
  * @link https://developer.github.com/v3/issues/
+ * @package Initvector\Mittens
  */
 class Issue extends EndpointGroup {
 

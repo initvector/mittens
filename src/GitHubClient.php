@@ -2,6 +2,9 @@
 namespace Initvector\Mittens;
 use Garden\Http\HttpClient;
 
+/**
+ * @license http://opensource.org/licenses/MIT MIT License
+ */
 class GitHubClient extends HttpClient {
 
     private $perPage = 100;

@@ -3,8 +3,9 @@ namespace Initvector\Mittens\PR;
 use Initvector\Mittens\EndpointGroup;
 
 /**
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @link https://developer.github.com/v3/repos/
  * @package Initvector\Mittens
- * @link https://developer.github.com/v3/pulls/
  */
 class PR extends EndpointGroup {
 
