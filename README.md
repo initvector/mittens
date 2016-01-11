@@ -37,7 +37,7 @@ A read-only library for accessing [version 3 of GitHub's API](https://developer.
 use Initvector\Mittens\Client as mittens;
 
 $mittens = new mittens('authentication-token-goes-here');
-$result = $client->repo()->getOwn()->getBody();
+$result = $mittens->repo()->getOwn()->getBody();
 ```
 
 ## Notes
