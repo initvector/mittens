@@ -40,5 +40,8 @@ $mittens = new mittens('authentication-token-goes-here');
 $result = $mittens->repo()->getOwn()->getBody();
 ```
 
-## Notes
-* API requests will return an `Garden\Http\HttpResponse` object representing the full state of the HTTP response.  This object can be used to pull raw header or body contents, if necessary.  In addition, methods like `getBody` can be used to retrieve the data and convert from JSON to an object, automatically, if possible.
+Now `$result` contains the response body from GitHub's [List Your Repos](https://developer.github.com/v3/repos/#list-your-repositories) endpoint _as an array_.
+
+## Usage Notes
+* API requests will return an `Garden\Http\HttpResponse` object representing the full state of the HTTP response.  This object can be used to pull raw header or body contents.
+* Use `getBody` to retrieve the data and convert from JSON to an array, if possible.
